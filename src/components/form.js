@@ -52,7 +52,9 @@ const Form = (props) => {
     );
   }
   if (description === "пасмурно") {
-    imgWeather = <img className={imgWeather} src="/img/cloud@2x.png" alt="" />;
+    imgWeather = (
+      <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />
+    );
   }
   if (description === "переменная облачность") {
     imgWeather = (
