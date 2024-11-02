@@ -8,23 +8,17 @@ A simple web application for displaying weather data. This app was created for l
 
    bash
 
-   Копировать код
-
    `git clone <your-repo-url>`
 
 2. Navigate to the project directory:
 
    bash
 
-   Копировать код
-
    `cd weather-app`
 
 3. Install dependencies using Yarn:
 
    bash
-
-   Копировать код
 
    `yarn install`
 
@@ -33,8 +27,6 @@ A simple web application for displaying weather data. This app was created for l
 To start the development server, run:
 
 bash
-
-Копировать код
 
 `yarn dev`
 
