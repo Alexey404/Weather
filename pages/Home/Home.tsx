@@ -4,8 +4,8 @@ import Modal from "../../components/Modal/Modal";
 import { CustomError } from "../../types/customError";
 import { WeatherData } from "../../types/weatherTypes";
 import { checkError } from "../../utils/checkError";
-import s from "./Home.module.scss";
 import { Input } from "../../components/Input/Input";
+import s from "./Home.module.scss";
 
 const ICONS = {
   ["дождь"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
