@@ -1,8 +1,10 @@
-import { FC, ReactNode, useMemo, useRef, useState } from "react";
-import React from "react";
+import React, { ReactNode, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { gcbc } from "../../utils/getClassByCondition";
-import useClickOutside from "../../utils/useClickOutside";
+import useClickOutside from "../../hooks/useClickOutside";
+import RegularButton from "../RegularButton/RegularButton";
+
+import "./Modal.css";
 
 export type ModalSize = "small" | "big";
 
@@ -10,84 +12,64 @@ export interface IModalProps {
   children: ReactNode;
   onClose: () => void;
   title: string;
-  actionTitle: string;
-  onActionClick: () => void;
   modalSize?: ModalSize;
   classContent?: string;
+  actionTitle: string;
+  onActionClick: () => void;
 }
-
-export const StoryModal: FC = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  return (
-    <>
-      <div>
-        {showModal && (
-          <Modal
-            // eslint-disable-next-line no-console
-            onActionClick={() => console.log("Click")}
-            title="Модальное окно"
-            actionTitle="Применить"
-            onClose={() => setShowModal(false)}
-          >
-            Content
-          </Modal>
-        )}
-      </div>
-      <div id="modal-root"></div>
-    </>
-  );
-};
 
 const Modal: React.FC<IModalProps> = ({
   children,
   onClose,
   title,
-  actionTitle,
-  onActionClick,
   modalSize,
-  classContent
+  classContent,
+  onActionClick,
+  actionTitle
 }) => {
   const refModal = useRef<HTMLDivElement | null>(null);
   const classNameContent = useMemo(() => {
-    return `in-zhir-modal__content ${gcbc("in-zhir-modal__content--scroll-line", modalSize !== "small")} ${classContent ? classContent : ""}`;
+    return `modal__content ${gcbc("modal__content--scroll-line", modalSize !== "small")} ${classContent ? classContent : ""}`;
   }, [modalSize]);
 
   useClickOutside(refModal, onClose);
 
   return createPortal(
-    <div className="in-zhir-modal-overlay">
+    <div className="modal-overlay">
       <div
         ref={refModal}
-        className="in-zhir-modal-container"
+        className="modal-container"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="in-zhir-modal__header">
-          <h3 className={`in-zhir-modal__title `}>{title}</h3>
-          <button className="in-zhir-modal__button-close" onClick={onClose}>
-            Что то
-          </button>
+        <div className="modal__header">
+          <h3 className={`modal__title `}>{title}</h3>
+          <button className="modal__button-close" onClick={onClose} />
         </div>
         {modalSize !== "small" && (
-          <div className="in-zhir-modal__content__separator--top" />
+          <div className="modal__content__separator--top" />
         )}
 
         <div className={classNameContent}>{children}</div>
 
         {modalSize !== "small" && (
-          <div className="in-zhir-modal__content__separator--bottom" />
+          <div className="modal__content__separator--bottom" />
         )}
 
-        <div className="in-zhir-modal__bottom">
-          <button onClick={onClose} className="in-zhir-modal__bottom__button">
-            Отмена
-          </button>
-          <button
+        <div className="modal__bottom">
+          <RegularButton
+            onClick={onClose}
+            title="Отмена"
+            variant="default"
+            outlined
+            className="modal__bottom__button"
+          />
+          <RegularButton
             onClick={onActionClick}
-            className="in-zhir-modal__bottom__button"
-          >
-            {actionTitle}
-          </button>
+            title={actionTitle}
+            variant="primary500"
+            outlined={false}
+            className="modal__bottom__button"
+          />
         </div>
       </div>
     </div>,

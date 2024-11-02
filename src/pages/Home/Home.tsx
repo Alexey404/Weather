@@ -1,35 +1,38 @@
+import React, { useEffect, useMemo, useState } from "react";
 import { weatherApi } from "../../api/weather";
+import Modal from "../../components/Modal/Modal";
 import { CustomError } from "../../types/customError";
 import { WeatherData } from "../../types/weatherTypes";
 import { checkError } from "../../utils/checkError";
 import s from "./Home.module.scss";
-import React, { useEffect, useMemo, useState } from "react";
+import { Input } from "../../components/Input/Input";
 
 const ICONS = {
   ["дождь"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
   ["снег"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
   ["01n"]: <img className={s.imgWeather} src="/img/sun@2x.png" alt="" />,
-  ["облачно"]: (
+  ["03n"]: (
     <img className={s.imgWeather} src="/img/partly_cloudy@2x.png" alt="" />
   ),
-  ["небольшой дождь"]: (
-    <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />
-  ),
+  ["04d"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />,
+  ["10n"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
   ["облачно с прояснениями"]: (
     <img className={s.imgWeather} src="/img/partly_cloudy@2x.png" alt="" />
   ),
   ["шторм"]: <img className={s.imgWeather} src="/img/storm@2x.png" alt="" />,
-  ["пасмурно"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />,
+  ["04n"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />,
   ["02n"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />
 };
 
-export const Home = (props) => {
+export const Home = () => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [isModal, setIsModal] = useState<boolean>(false);
   const [tempShow, setTempShow] = useState<"tempC" | "tempF">("tempC");
+  const [search, setSearch] = useState<string>("Москва");
 
-  const getWeatherApi = async () => {
+  const getWeatherApi = async (search: string) => {
     try {
-      const response = await weatherApi("Москва");
+      const response = await weatherApi(search);
       if ("message" in response) {
         throw new CustomError(response.message);
       }
@@ -42,7 +45,7 @@ export const Home = (props) => {
   };
 
   useEffect(() => {
-    getWeatherApi();
+    getWeatherApi(search);
   }, []);
 
   const tempC = useMemo(() => {
@@ -59,6 +62,11 @@ export const Home = (props) => {
 
   const btnF = () => {
     setTempShow("tempF");
+  };
+
+  const handelSearch = () => {
+    getWeatherApi(search);
+    setIsModal(false);
   };
 
   const tempClassC = tempShow === "tempC" ? s.deg__itemС_activ : s.deg__itemС;
@@ -80,7 +88,12 @@ export const Home = (props) => {
             </ul>
           </div>
           <div className={s.locationCont}>
-            <button className={s.location__change}>Сменить город</button>
+            <button
+              onClick={() => setIsModal(true)}
+              className={s.location__change}
+            >
+              Сменить город
+            </button>
             <img className={s.locationImg} src="/img/location@2x.png" alt="" />
             <div className={s.location__my}>Мое местоположение</div>
           </div>
@@ -114,6 +127,23 @@ export const Home = (props) => {
           <li className={s.val}>10%</li>
         </ul>
       </footer>
+      {isModal && (
+        <Modal
+          title="Выберите город"
+          onClose={() => setIsModal(false)}
+          modalSize="small"
+          actionTitle="Искать"
+          onActionClick={handelSearch}
+        >
+          <div>Введите город</div>
+          <div className={s["input-container"]}>
+            <Input
+              value={search}
+              onChange={(value) => setSearch(value.target.value)}
+            />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

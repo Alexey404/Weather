@@ -1,0 +1,220 @@
+.regular-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  position: relative;
+
+  height: 60px;
+
+  padding: 0 20px;
+  border-radius: var(--bigCorner);
+}
+
+.regular-button__wrapper-with-icons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.regular-button__wrapper-with-icons.loading {
+  opacity: 0;
+}
+
+.regular-button__button-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+/* danger 500 button */
+
+.regular-button--danger500 {
+  background-color: var(--danger-500);
+  color: var(--primary-25);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.regular-button--danger500:active {
+  background-color: var(--danger-600);
+  color: var(--primary-25);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* danger 500 button OUTLINED*/
+
+.regular-button--danger500-outlined {
+  background-color: var(--base-white);
+  color: var(--danger-500);
+  border: 2px var(--danger-500) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+.regular-button--danger500-outlined:active {
+  background-color: var(--base-white);
+  color: var(--danger-600);
+  border: 2px var(--danger-600) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+/* danger 50 button OUTLINED*/
+
+.regular-button--danger50-outlined {
+  background-color: var(--base-white);
+  color: var(--danger-50);
+  border: 2px var(--danger-50) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+.regular-button--danger50-outlined:active {
+  background-color: var(--base-white);
+  color: var(--danger-100);
+  border: 2px var(--danger-100) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+/* danger 50 button */
+
+.regular-button--danger50 {
+  background-color: var(--danger-50);
+  color: var(--danger-500);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.regular-button--danger50:active {
+  background-color: var(--danger-100);
+  color: var(--danger-500);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* primary 500 button */
+
+.regular-button--primary500 {
+  background-color: var(--primary-500);
+  color: var(--primary-25);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.regular-button--primary500:active {
+  background-color: var(--primary-600);
+  color: var(--primary-25);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* primary 500 button OUTLINED*/
+
+.regular-button--primary500-outlined {
+  background-color: var(--base-white);
+  color: var(--primary-500);
+  border: 2px var(--gray-300) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+.regular-button--primary500-outlined:active {
+  background-color: var(--base-white);
+  color: var(--primary-600);
+  border: 2px var(--gray-400) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+/* primary 50 button */
+
+.regular-button--primary50 {
+  background-color: var(--primary-50);
+  color: var(--primary-600);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.regular-button--primary50:active {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* primary 50 button OUTLINED*/
+
+.regular-button--primary50-outlined {
+  background-color: var(--base-white);
+  color: var(--primary-50);
+  border: 2px var(--gray-300) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+.regular-button--primary50-outlined:active {
+  background-color: var(--base-white);
+  color: var(--primary-100);
+  border: 2px var(--gray-400) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+/* disabled button */
+
+.regular-button:disabled {
+  cursor: not-allowed;
+  background-color: var(--gray-100);
+  color: var(--gray-300);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* disabled button  OUTLINED*/
+
+.regular-button--outlined:disabled {
+  cursor: not-allowed;
+  background-color: var(--base-white);
+  color: var(--gray-300);
+  border: 2px var(--gray-300) solid;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
