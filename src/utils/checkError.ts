@@ -1,9 +1,7 @@
 import axios from "axios";
+import { ResponseError } from "../types/axiosResponseTypes";
 import { CustomError } from "../types/customError";
-import {
-  IErrorAxiosResponse,
-  ResponseError
-} from "../types/axiosResponseTypes";
+import { ErrorResponseWeather } from "../types/weatherTypes";
 
 const UNHANDLED_ERROR = "Необработанная ошибка";
 
@@ -13,19 +11,12 @@ export const checkError = (error: unknown): ResponseError => {
   }
 
   if (axios.isAxiosError(error)) {
-    const data: IErrorAxiosResponse = error.response?.data;
+    const data: ErrorResponseWeather = error.response?.data;
 
-    if (typeof data.meta.error === "string") {
+    if ("message" in data) {
       return {
-        message: data.meta.error,
-        code: error.response?.status
-      };
-    }
-
-    if (data.meta.error && "message" in data.meta.error) {
-      return {
-        message: data.meta.error.message,
-        code: data.meta.error.code
+        message: data.message,
+        code: data.cod
       };
     }
 

@@ -14,6 +14,6 @@ export interface IError {
 }
 
 export type ResponseError = {
-  code?: number;
   message: string;
+  code?: string;
 };

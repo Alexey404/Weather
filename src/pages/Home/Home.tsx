@@ -6,22 +6,22 @@ import { WeatherData } from "../../types/weatherTypes";
 import { checkError } from "../../utils/checkError";
 import { Input } from "../../components/Input/Input";
 import s from "./Home.module.scss";
+import { toast } from "react-toastify";
 
 const ICONS = {
-  ["дождь"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
-  ["снег"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
-  ["01n"]: <img className={s.imgWeather} src="/img/sun@2x.png" alt="" />,
-  ["03n"]: (
-    <img className={s.imgWeather} src="/img/partly_cloudy@2x.png" alt="" />
-  ),
-  ["04d"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />,
-  ["10n"]: <img className={s.imgWeather} src="/img/rain@2x.png" alt="" />,
-  ["облачно с прояснениями"]: (
-    <img className={s.imgWeather} src="/img/partly_cloudy@2x.png" alt="" />
-  ),
-  ["шторм"]: <img className={s.imgWeather} src="/img/storm@2x.png" alt="" />,
-  ["04n"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />,
-  ["02n"]: <img className={s.imgWeather} src="/img/cloud@2x.png" alt="" />
+  ["01d"]: "/img/sun@2x.png",
+  ["02d"]: "/img/cloud@2x.png",
+  ["03d"]: "/img/partly_cloudy@2x.png",
+  ["04d"]: "/img/cloud@2x.png",
+  ["09d"]: "/img/rain@2x.png",
+  ["10d"]: "/img/rain@2x.png",
+  ["01n"]: "/img/sun@2x.png",
+  ["02n"]: "/img/cloud@2x.png",
+  ["03n"]: "/img/partly_cloudy@2x.png",
+  ["04n"]: "/img/cloud@2x.png",
+  ["09n"]: "/img/rain@2x.png",
+  ["10n"]: "/img/rain@2x.png",
+  ["13n"]: "/img/rain@2x.png"
 };
 
 export const Home = () => {
@@ -33,13 +33,16 @@ export const Home = () => {
   const getWeatherApi = async (search: string) => {
     try {
       const response = await weatherApi(search);
+
       if ("message" in response) {
         throw new CustomError(response.message);
       }
 
       setWeather(response);
+      setIsModal(false);
     } catch (error) {
       const err = checkError(error);
+      toast.error(err.message);
       return;
     }
   };
@@ -66,7 +69,12 @@ export const Home = () => {
 
   const handelSearch = () => {
     getWeatherApi(search);
-    setIsModal(false);
+  };
+
+  const keyPress = (e) => {
+    if (e.keyCode === 13) {
+      handelSearch();
+    }
   };
 
   const tempClassC = tempShow === "tempC" ? s.deg__itemС_activ : s.deg__itemС;
@@ -101,7 +109,14 @@ export const Home = () => {
       </header>
       <div className={s.main}>
         <div className={s.tempImg}>
-          {ICONS[weather?.weather[0].icon || "01n"]}
+          {weather?.weather[0].icon && (
+            <img
+              className={s.imgWeather}
+              src={ICONS[weather.weather[0].icon]}
+              alt=""
+            />
+          )}
+
           <span className={s.main__num}>
             {tempShow === "tempC" ? tempC : tempF}
           </span>
@@ -140,6 +155,7 @@ export const Home = () => {
             <Input
               value={search}
               onChange={(value) => setSearch(value.target.value)}
+              onKeyDown={keyPress}
             />
           </div>
         </Modal>

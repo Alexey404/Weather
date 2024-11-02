@@ -14,6 +14,11 @@ export interface WeatherData {
   cod: number;
 }
 
+export interface ErrorResponseWeather {
+  cod: string;
+  message: string;
+}
+
 export interface Coord {
   lon: number;
   lat: number;
@@ -23,7 +28,19 @@ export interface Weather {
   id: number;
   main: string;
   description: string;
-  icon: "01n";
+  icon:
+    | "01n"
+    | "02n"
+    | "03n"
+    | "04n"
+    | "09n"
+    | "10n"
+    | "01d"
+    | "02d"
+    | "03d"
+    | "04d"
+    | "09d"
+    | "10d";
 }
 
 export interface Main {
