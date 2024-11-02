@@ -2,19 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 import { weatherApi } from "../../api/weather";
 import Modal from "../../components/Modal/Modal";
 import { CustomError } from "../../types/customError";
-import { WeatherData } from "../../types/weatherTypes";
+import { IconType, WeatherData } from "../../types/weatherTypes";
 import { checkError } from "../../utils/checkError";
 import { Input } from "../../components/Input/Input";
 import s from "./Home.module.scss";
 import { toast } from "react-toastify";
 
-const ICONS = {
+const ICONS: Record<IconType, string> = {
   ["01d"]: "/img/sun@2x.png",
   ["02d"]: "/img/cloud@2x.png",
   ["03d"]: "/img/partly_cloudy@2x.png",
   ["04d"]: "/img/cloud@2x.png",
   ["09d"]: "/img/rain@2x.png",
   ["10d"]: "/img/rain@2x.png",
+  ["13d"]: "/img/rain@2x.png",
   ["01n"]: "/img/sun@2x.png",
   ["02n"]: "/img/cloud@2x.png",
   ["03n"]: "/img/partly_cloudy@2x.png",
