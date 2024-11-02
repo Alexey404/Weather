@@ -1,6 +1,5 @@
 import React from "react";
 import * as axios from "axios";
-import {Redirect} from "react-router";
 import s from "./Search.module.sass";
 import CityItem from "./CityItem";
 
@@ -50,9 +49,6 @@ let Search = (props) => {
     newfilteredCity = "";
   }
 
-  if (a === "getForm") {
-    return <Redirect to={"/form"} />;
-  }
   return (
     <div className={s.ContSearch}>
       <div className={s.Hi}>
@@ -61,7 +57,7 @@ let Search = (props) => {
       </div>
       <form className={s.form}>
         <div className={s.SearchForm}>
-          <input 
+          <input
             className={s.Search}
             type="text"
             value={searchCity}

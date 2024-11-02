@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import s from "./form.module.sass";
 
 const Form = (props) => {
@@ -71,9 +70,6 @@ const Form = (props) => {
     tempClassF = s.deg__itemF_activ;
   }
 
-  if (a === "getSearch") {
-    return <Redirect to={"/"} />;
-  }
   return (
     <div className={s.all}>
       <header className={s.header}>

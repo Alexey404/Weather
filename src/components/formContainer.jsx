@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import Form from "./form";
-import { btnCAC, btnFAC, deleteAC } from "./Redax/weather-reducer";
+import { btnCAC, btnFAC, deleteAC } from "../Redux/weather-reducer";
 
 let mapStateToProps = (state) => {
   return {
     State: state.searchPage.State,
     status: state.searchPage.status,
-    statusTemp: state.searchPage.statusTemp,
+    statusTemp: state.searchPage.statusTemp
   };
 };
 let mapDispatchToProps = (dispatch) => {
@@ -19,7 +19,7 @@ let mapDispatchToProps = (dispatch) => {
     },
     btnF: () => {
       dispatch(btnFAC());
-    },
+    }
   };
 };
 

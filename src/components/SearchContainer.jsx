@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { ClickAC, searchAC, SetStateAC } from "./Redax/weather-reducer";
+import { ClickAC, searchAC, SetStateAC } from "../Redux/weather-reducer";
 import Search from "./Search";
 
 let mapStateToProps = (state) => {
@@ -7,7 +7,7 @@ let mapStateToProps = (state) => {
     searchPage: state.searchPage,
     weather: state.searchPage.weather,
     status: state.searchPage.status,
-    city: state.searchPage.city,
+    city: state.searchPage.city
   };
 };
 let mapDispatchToProps = (dispatch) => {
@@ -20,7 +20,7 @@ let mapDispatchToProps = (dispatch) => {
     },
     SetState: (state) => {
       dispatch(SetStateAC(state));
-    },
+    }
   };
 };
 
