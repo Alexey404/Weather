@@ -161,11 +161,12 @@ li {
       line-height: 140px;
     }
 
-    &__num::after {
+    &::before {
       content: "o";
       position: absolute;
       font-size: 90px;
-      top: -50px;
+      top: -50%;
+      right: -50px;
       color: var(--base-white);
     }
   }

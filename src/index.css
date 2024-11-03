@@ -23,13 +23,6 @@ input {
 }
 
 :root {
-  --tablet: 160px;
-}
-
-@media (--tablet) {
-}
-
-:root {
   --primary-25: #ecf3fd;
   --primary-50: #bbd0ec;
   --primary-100: #95b4e0;

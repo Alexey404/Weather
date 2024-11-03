@@ -26,10 +26,11 @@ const ICONS: Record<IconType, string> = {
 };
 
 export const Home = () => {
+  const storageCity = localStorage.getItem("city");
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [isModal, setIsModal] = useState<boolean>(false);
   const [tempShow, setTempShow] = useState<"tempC" | "tempF">("tempC");
-  const [search, setSearch] = useState<string>("Москва");
+  const [search, setSearch] = useState<string>(storageCity || "Москва");
 
   const getWeatherApi = async (search: string) => {
     try {
@@ -40,6 +41,7 @@ export const Home = () => {
       }
 
       setWeather(response);
+      localStorage.setItem("city", response.name);
       setIsModal(false);
     } catch (error) {
       const err = checkError(error);
