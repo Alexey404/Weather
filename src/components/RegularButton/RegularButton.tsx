@@ -50,7 +50,7 @@ const RegularButton: React.FC<RegularButtonProps> = ({
 
   return (
     <button className={buttonClass} disabled={disabled} {...props}>
-      <span className={`regular-button__wrapper-with-icons}`}>
+      <span className={`regular-button__wrapper-with-icons`}>
         <span className={GeneralTextStyles.buttonText}>{title}</span>
       </span>
     </button>

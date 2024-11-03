@@ -103,7 +103,7 @@ export const Home = () => {
             >
               Сменить город
             </button>
-            <img className={s.locationImg} src="/img/location@2x.png" alt="" />
+
             <div className={s.location__my}>Мое местоположение</div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export const Home = () => {
           actionTitle="Искать"
           onActionClick={handelSearch}
         >
-          <div>Введите город</div>
+          <div>Введите название города</div>
           <div className={s["input-container"]}>
             <Input
               value={search}

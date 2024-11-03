@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { gcbc } from "../../utils/getClassByCondition";
 import useClickOutside from "../../hooks/useClickOutside";
 import RegularButton from "../RegularButton/RegularButton";
+import "./Modal.scss";
 
-import "./Modal.css";
 
 export type ModalSize = "small" | "big";
 
@@ -59,7 +59,7 @@ const Modal: React.FC<IModalProps> = ({
           <RegularButton
             onClick={onClose}
             title="Отмена"
-            variant="default"
+            variant="primary500"
             outlined
             className="modal__bottom__button"
           />

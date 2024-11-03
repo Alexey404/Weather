@@ -1,3 +1,5 @@
+@import "../../breakpoints";
+
 ul,
 li {
   list-style: none;
@@ -10,7 +12,7 @@ li {
   justify-content: space-between;
 
   min-height: 100dvh;
-  background-color: #498cec;
+  background: var(--gradientPrimary);
 
   box-sizing: border-box;
   text-align: center;
@@ -19,13 +21,6 @@ li {
 .locationImg {
   width: 22px;
   height: 26px;
-}
-
-body {
-  font-family: "Lato", sans-serif;
-  font-size: 18px;
-  font-weight: normal;
-  color: #fff;
 }
 
 .container {
@@ -39,6 +34,10 @@ body {
   flex: 1 0 auto;
   padding: 75px;
   max-height: 100px;
+
+  @media (max-width: $tablet) {
+    padding: 20px;
+  }
 }
 
 .location {
@@ -48,23 +47,19 @@ body {
     margin-bottom: 9px;
     font-size: 50px;
     line-height: 60px;
+    color: var(--base-white);
   }
+
   &__change {
-    width: 132px;
-    height: 22px;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #ffffff;
+    color: var(--base-white);
     mix-blend-mode: normal;
-    opacity: 0.6;
     text-decoration: none;
-    margin-right: 29px;
-    padding: 0;
-    border: none;
-    font: inherit;
-    color: inherit;
+    margin-right: 20px;
+    opacity: 0.6;
     background-color: transparent;
     outline: none;
     cursor: pointer;
@@ -76,7 +71,7 @@ body {
     line-height: 22px;
     width: 185px;
     height: 22px;
-    color: #ffffff;
+    color: var(--base-white);
     mix-blend-mode: normal;
     opacity: 0.6;
   }
@@ -92,7 +87,7 @@ body {
   margin-top: 6px;
 
   &__itemС_activ {
-    color: #ffffff;
+    color: var(--base-white);
     padding: 3px 13px 3px 13px;
     border-radius: 8px 0 0 8px;
     cursor: pointer;
@@ -104,7 +99,7 @@ body {
   &__itemF_activ {
     background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    color: #ffffff;
+    color: var(--base-white);
     opacity: 1;
     padding: 3px 13px 3px 13px;
     border-radius: 0 8px 8px 0;
@@ -148,22 +143,35 @@ body {
 
   text-align: center;
   flex: 1 0 auto;
-  height: 300px;
-  max-height: 300px;
 
   padding-bottom: 150px;
+
+  @media (max-width: $mobile-md) {
+    padding-bottom: 40px;
+  }
 
   &__num {
     font-size: 180px;
     line-height: 216px;
     position: relative;
+    color: var(--base-white);
+
+    @media (max-width: $mobile-md) {
+      font-size: 120px;
+      line-height: 140px;
+    }
 
     &__num::after {
       content: "o";
       position: absolute;
       font-size: 90px;
       top: -50px;
+      color: var(--base-white);
     }
+  }
+
+  &__descr {
+    color: var(--base-white);
   }
 
   &__descr:first-letter {
@@ -176,22 +184,35 @@ body {
 }
 
 .footer {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 100px;
-  align-items: center;
   gap: 15px;
+  justify-items: center;
+
+  @media (max-width: $tablet) {
+    padding: 20px;
+  }
+
+  @media (max-width: $mobile-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 350px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .arg {
   margin-bottom: 10px;
   opacity: 0.6;
+  color: var(--base-white);
 }
 
 .val {
   font-size: 25px;
   line-height: 30px;
-
+  color: var(--base-white);
   font-size: 12px;
 }
 
