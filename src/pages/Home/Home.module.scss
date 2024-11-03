@@ -155,10 +155,12 @@ li {
     line-height: 216px;
     position: relative;
     color: var(--base-white);
+    min-width: 250px;
 
     @media (max-width: $mobile-md) {
       font-size: 120px;
       line-height: 140px;
+      min-width: 200px;
     }
 
     &::before {
@@ -166,8 +168,13 @@ li {
       position: absolute;
       font-size: 90px;
       top: -50%;
-      right: -50px;
+      right: -20px;
       color: var(--base-white);
+
+      @media (max-width: $mobile-md) {
+        right: 0;
+        font-size: 50px;
+      }
     }
   }
 
@@ -186,7 +193,7 @@ li {
 
 .footer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   padding: 100px;
   gap: 15px;
   justify-items: center;
@@ -196,7 +203,7 @@ li {
   }
 
   @media (max-width: $mobile-md) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 350px) {
@@ -223,7 +230,10 @@ li {
 }
 
 .tempImg {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   margin: 0 auto;
 }
 

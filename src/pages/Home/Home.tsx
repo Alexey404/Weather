@@ -106,7 +106,7 @@ export const Home = () => {
               Сменить город
             </button>
 
-            <div className={s.location__my}>Мое местоположение</div>
+            <div className={s.location__my}></div>
           </div>
         </div>
       </header>
@@ -120,9 +120,9 @@ export const Home = () => {
             />
           )}
 
-          <span className={s.main__num}>
+          <div className={s.main__num}>
             {tempShow === "tempC" ? tempC : tempF}
-          </span>
+          </div>
         </div>
         <div className={s.main__descr}>{weather?.weather[0].description}</div>
       </div>
